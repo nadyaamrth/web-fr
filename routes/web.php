@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,4 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/post',[PostController::class,'index']);
 Route::view('/portofolio', 'portofolio.portofolio');
+
+Route::get('/post/create',[PostController::class,'create']);
+Route::post('/post/create',[PostController::class,'store']);
+
+Route::get('/post/{post:slug}/edit',[PostController::class,'edit']);
+Route::patch('/post/{post:slug}/edit',[PostController::class,'update']);
+
+Route::delete('/post/{post:slug}/delete',[PostController::class,'destroy']);
+
+Route::get('/post/{post:slug}',[PostController::class,'show']);
